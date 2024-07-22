@@ -1,0 +1,9 @@
+<nav>
+  <ul class="nav-links">
+    @for (link of links; track link.href){
+    <li>
+      <a [routerLink]="link.href">{{ link.label }}</a>
+    </li>
+    }
+  </ul>
+</nav>
