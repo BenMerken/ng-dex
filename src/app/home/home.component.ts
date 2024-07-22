@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'dex-home',
-  standalone: true,
-  imports: [],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+	selector: 'dex-home',
+	standalone: true,
+	imports: [],
+	templateUrl: './home.component.html',
+	styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}
