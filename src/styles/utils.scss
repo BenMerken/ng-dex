@@ -1,0 +1,7 @@
+$mobileBreakpoinr: 640px;
+
+@mixin desktop() {
+	@media (min-width: $mobileBreakpoinr) {
+		@content;
+	}
+}
