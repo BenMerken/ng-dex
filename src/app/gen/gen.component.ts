@@ -28,7 +28,6 @@ export class Gen1Component implements AfterViewInit, OnInit {
 
 		const getGenSub = this.dexService.getPokemonsForGen(this.genNumber()).subscribe({
 			error: (error) => {
-				console.log(error);
 				this.error.set(error);
 			},
 			complete: () => {
