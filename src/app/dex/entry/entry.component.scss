@@ -3,12 +3,26 @@
 }
 
 .entry {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.4rem;
 
-  padding: 1rem 2rem;
+	padding: 1rem 2rem;
 
 	background-color: rgba($color: #000000, $alpha: 0.6);
+	border-radius: 8px;
+
+	* {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		padding: 0.2rem;
+		width: 100%;
+
+		background-color: #ffffff;
+		border-radius: 4px;
+	}
 }
