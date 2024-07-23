@@ -26,7 +26,7 @@ export class Gen1Component implements AfterViewInit, OnInit {
 	ngOnInit(): void {
 		this.loading.set(true);
 
-		const getGen1Sub = this.dexService.getPokemonsForGen(this.genNumber()).subscribe({
+		const getGenSub = this.dexService.getPokemonsForGen(this.genNumber()).subscribe({
 			error: (error) => {
 				console.log(error);
 				this.error.set(error);
@@ -37,7 +37,7 @@ export class Gen1Component implements AfterViewInit, OnInit {
 		});
 
 		this.destroyRef.onDestroy(() => {
-			getGen1Sub.unsubscribe();
+			getGenSub.unsubscribe();
 		});
 	}
 
