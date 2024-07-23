@@ -3,7 +3,11 @@
 .dex-list {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	gap: 0.4rem;
+
+	padding: 3rem;
 
 	background-color: rgba($color: #000000, $alpha: 0.2);
 
