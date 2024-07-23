@@ -5,7 +5,7 @@ import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
 
 @Component({
-	selector: 'dex-gen-1',
+	selector: 'dex-gen',
 	standalone: true,
 	imports: [EntryComponent],
 	templateUrl: './gen.component.html',

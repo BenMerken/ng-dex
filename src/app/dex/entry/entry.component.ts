@@ -1,7 +1,9 @@
 import {TitleCasePipe} from '@angular/common';
-import {Component, input} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Component, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
 
-import {GenDataItem} from '@app/dex/dex.model';
+import {NameAndUrl} from '@app/dex/dex.model';
+import {APIPokemon} from '@app/dex/entry/pokemon.model';
 
 @Component({
 	selector: 'dex-entry',
@@ -10,6 +12,24 @@ import {GenDataItem} from '@app/dex/dex.model';
 	templateUrl: './entry.component.html',
 	styleUrl: './entry.component.scss'
 })
-export class EntryComponent {
-	pokemon = input.required<GenDataItem>();
+export class EntryComponent implements OnInit {
+	private httpClient = inject(HttpClient);
+	private destroyRef = inject(DestroyRef);
+
+	pokemon = input.required<NameAndUrl>();
+	pokemonDetail = signal<APIPokemon | null>(null);
+
+	ngOnInit(): void {
+		const sub = this.httpClient
+			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokemon().name}`)
+			.subscribe({
+				next: (data) => {
+					this.pokemonDetail.set(data);
+				}
+			});
+
+		this.destroyRef.onDestroy(() => {
+			sub.unsubscribe();
+		});
+	}
 }

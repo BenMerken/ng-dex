@@ -1,9 +1,9 @@
-export type GenDataItem = {
+export type NameAndUrl = {
 	name: string;
 	url: string;
 };
 
 export type GenAPIData = {
-	pokemon_species: GenDataItem[];
-	types: GenDataItem[];
+	pokemon_species: NameAndUrl[];
+	types: NameAndUrl[];
 };

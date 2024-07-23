@@ -1,3 +1,14 @@
 :host {
 	padding: 2rem;
 }
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem 2rem;
+
+	background-color: rgba($color: #000000, $alpha: 0.6);
+}

@@ -1,3 +1,8 @@
-<li>
-	<small>{{ pokemon().name | titlecase }}</small>
+<li class="entry">
+	@if (pokemonDetail()) {
+    <img [src]="pokemonDetail()?.sprites?.front_default" alt="">
+		<small>{{ pokemonDetail()?.name | titlecase }}</small>
+	} @else {
+		<small>{{ pokemon().name | titlecase }}</small>
+	}
 </li>
