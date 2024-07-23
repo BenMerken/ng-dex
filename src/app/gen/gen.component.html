@@ -4,7 +4,11 @@
 	} @else {
 		<ul class="dex-list">
 			@for (pokemon of pokemons(); track pokemon.name) {
-				<dex-entry [pokemon]="pokemon" />
+				@defer (on viewport) {
+					<dex-entry [pokemon]="pokemon" />
+				} @placeholder {
+					<p>Dex entry</p>
+				}
 			}
 		</ul>
 	}
