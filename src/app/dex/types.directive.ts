@@ -12,7 +12,7 @@ export class TypesDirective implements AfterContentChecked {
 	constructor(private el: ElementRef) {}
 
 	ngAfterContentChecked(): void {
-    //TODO: Add order of precedence logic
+		//TODO: Add order of precedence logic
 		const typeClass = this.pokeTypes()?.[0].type.name;
 
 		if (typeClass) {

@@ -30,6 +30,6 @@ export class HeaderComponent {
 		{
 			label: 'Gen 3',
 			href: '/dex/gen/3'
-		},
+		}
 	];
 }

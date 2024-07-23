@@ -7,16 +7,16 @@ export const routes: Routes = [
 	{
 		path: '',
 		redirectTo: 'dex',
-		pathMatch: 'full',
+		pathMatch: 'full'
 	},
 	{
 		path: 'dex',
-    title: 'NG Dex',
+		title: 'NG Dex',
 		component: HomeComponent
 	},
 	{
 		path: 'dex/gen/:genNumber',
 		component: Gen1Component,
-    title: resolveTitle
+		title: resolveTitle
 	}
 ];

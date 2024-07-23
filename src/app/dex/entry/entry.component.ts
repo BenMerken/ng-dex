@@ -4,7 +4,7 @@ import {Component, DestroyRef, inject, input, OnInit, signal} from '@angular/cor
 
 import {NameAndUrl} from '@app/dex/dex.model';
 import {APIPokemon} from '@app/dex/entry/pokemon.model';
-import { TypesDirective } from '@app/dex/types.directive';
+import {TypesDirective} from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry',
@@ -22,7 +22,9 @@ export class EntryComponent implements OnInit {
 
 	ngOnInit(): void {
 		const sub = this.httpClient
-			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokemon().url.split('/')[6]}`)
+			.get<APIPokemon>(
+				`https://pokeapi.co/api/v2/pokemon/${this.pokemon().url.split('/')[6]}`
+			)
 			.subscribe({
 				next: (data) => {
 					this.pokemonDetail.set(data);
