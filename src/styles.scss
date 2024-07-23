@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@styles/utils.scss' as *;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -33,10 +35,8 @@ body {
 	}
 }
 
-main {
-	margin: 0 auto;
-
-	max-width: fit-content;
+a {
+	display: block;
 }
 
 ul {
