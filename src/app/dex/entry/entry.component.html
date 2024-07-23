@@ -1,6 +1,6 @@
-<li class="entry">
+<li class="entry" [pokeTypes]="pokemonDetail()?.types">
 	@if (pokemonDetail()) {
-    <img [src]="pokemonDetail()?.sprites?.front_default" alt="">
+		<img [src]="pokemonDetail()?.sprites?.front_default" alt="" />
 		<small>{{ pokemonDetail()?.name | titlecase }}</small>
 	} @else {
 		<small>{{ pokemon().name | titlecase }}</small>

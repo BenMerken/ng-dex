@@ -4,11 +4,12 @@ import {Component, DestroyRef, inject, input, OnInit, signal} from '@angular/cor
 
 import {NameAndUrl} from '@app/dex/dex.model';
 import {APIPokemon} from '@app/dex/entry/pokemon.model';
+import { TypesDirective } from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry',
 	standalone: true,
-	imports: [TitleCasePipe],
+	imports: [TitleCasePipe, TypesDirective],
 	templateUrl: './entry.component.html',
 	styleUrl: './entry.component.scss'
 })

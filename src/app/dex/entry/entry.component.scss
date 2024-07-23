@@ -1,7 +1,3 @@
-:host {
-	padding: 2rem;
-}
-
 .entry {
 	display: flex;
 	flex-direction: column;
@@ -25,4 +21,24 @@
 		background-color: #ffffff;
 		border-radius: 4px;
 	}
+}
+
+.bug {
+	background-color: rgba($color: #7cb00e, $alpha: 0.5);
+}
+
+.fire {
+	background-color: rgba($color: #db5929, $alpha: 0.5);
+}
+
+.grass {
+	background-color: rgba($color: #009202, $alpha: 0.5);
+}
+
+.poison {
+	background-color: rgba($color: #9900c8, $alpha: 0.5);
+}
+
+.water {
+	background-color: rgba($color: #025dc4, $alpha: 0.5);
 }

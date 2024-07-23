@@ -1,5 +1,9 @@
 import {NameAndUrl} from '@app/dex/dex.model';
 
+export type APIPokemonType = {
+	type: NameAndUrl;
+};
+
 export type APIGenus = {
 	genus: string;
 	language: {
@@ -13,7 +17,5 @@ export type APIPokemon = {
 	sprites: {
 		front_default: string;
 	};
-	types: {
-		type: NameAndUrl;
-	}[];
+	types: APIPokemonType[];
 };
