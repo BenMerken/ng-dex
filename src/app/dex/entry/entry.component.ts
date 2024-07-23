@@ -22,7 +22,7 @@ export class EntryComponent implements OnInit {
 
 	ngOnInit(): void {
 		const sub = this.httpClient
-			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokemon().name}`)
+			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${this.pokemon().url.split('/')[6]}`)
 			.subscribe({
 				next: (data) => {
 					this.pokemonDetail.set(data);
