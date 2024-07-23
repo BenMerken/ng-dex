@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
-import {ResolveFn} from '@angular/router';
+import {ActivatedRoute, ResolveFn} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
@@ -14,6 +14,7 @@ import {EntryComponent} from '@app/dex/entry/entry.component';
 export class Gen1Component implements AfterViewInit, OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
+	private activatedRoute = inject(ActivatedRoute);
 
 	genNumber = input.required<number>();
 
@@ -24,31 +25,44 @@ export class Gen1Component implements AfterViewInit, OnInit {
 	error = signal(null);
 
 	ngOnInit(): void {
-		this.loading.set(true);
+		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
+			this.loading.set(true);
 
-		const getGenSub = this.dexService.getPokemonsForGen(this.genNumber()).subscribe({
-			error: (error) => {
-				this.error.set(error);
-			},
-			complete: () => {
-				this.loading.set(false);
-			}
+			const getGenSub = this.dexService.getPokemonsForGen(params['genNumber']).subscribe({
+				error: (error) => {
+					this.error.set(error);
+				},
+				complete: () => {
+					this.loading.set(false);
+				}
+			});
+
+			this.destroyRef.onDestroy(() => {
+				getGenSub.unsubscribe();
+			});
 		});
 
 		this.destroyRef.onDestroy(() => {
-			getGenSub.unsubscribe();
+			activatedRouteSub.unsubscribe();
 		});
 	}
 
 	ngAfterViewInit(): void {
-		if (typeof document === 'undefined') {
-			return;
-		}
+		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
+			if (typeof document === 'undefined') {
+				return;
+			}
 
-		document.querySelector('body')?.classList.add(`gen-${this.genNumber()}`);
+			document.querySelector('body')?.classList.remove(`gen-${this.genNumber()}`);
+			document.querySelector('body')?.classList.add(`gen-${params['genNumber']}`);
+
+			this.destroyRef.onDestroy(() => {
+				document.querySelector('body')?.classList.remove(`gen-${params['genNumber']}`);
+			});
+		});
 
 		this.destroyRef.onDestroy(() => {
-			document.querySelector('body')?.classList.remove(`gen-${this.genNumber()}`);
+			activatedRouteSub.unsubscribe();
 		});
 	}
 }
