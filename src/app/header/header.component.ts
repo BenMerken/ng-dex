@@ -21,7 +21,15 @@ export class HeaderComponent {
 		},
 		{
 			label: 'Gen 1',
-			href: '/dex/gen-1'
-		}
+			href: '/dex/gen/1'
+		},
+		{
+			label: 'Gen 2',
+			href: '/dex/gen/2'
+		},
+		{
+			label: 'Gen 3',
+			href: '/dex/gen/3'
+		},
 	];
 }

@@ -24,6 +24,18 @@ body {
 	&.gen-1 {
 		background-image: url('../public/gen-1-background.jpg');
 	}
+  &.gen-2 {
+    background-image: url('../public/gen-2-background.png');
+  }
+  &.gen-3 {
+    background-image: url('../public/gen-3-background.avif');
+  }
+}
+
+main {
+  margin: 0 auto;
+
+  max-width: fit-content;
 }
 
 ul {

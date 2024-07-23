@@ -1,3 +1,5 @@
+$activeRouteBackgroundColor: #0088ff;
+
 :host {
 	padding: 1rem;
 }
@@ -6,4 +8,18 @@
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
+}
+
+a {
+	padding: 1rem 1.5rem;
+
+	border-radius: 8px;
+
+	&:hover {
+		background-color: rgba($color: $activeRouteBackgroundColor, $alpha: 0.5);
+	}
+
+	&.active {
+		background-color: $activeRouteBackgroundColor;
+	}
 }

@@ -14,19 +14,7 @@ export class DexService {
 	pokemons = signal<GenDataItem[]>([]);
 	types = signal<GenDataItem[]>([]);
 
-	getGen1() {
-		return this.getPokemonsForGen(1);
-	}
-
-	getGen2() {
-		return this.getPokemonsForGen(2);
-	}
-
-	getGen3() {
-		return this.getPokemonsForGen(3);
-	}
-
-	private getPokemonsForGen(gen: number) {
+	getPokemonsForGen(gen: number) {
 		return this.httpClient.get<GenAPIData>(`${this.pokeAPIUrl}/generation/${gen}`).pipe(
 			map((data) => ({pokemon: data.pokemon_species, types: data.types})),
 			tap((data) => {

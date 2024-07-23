@@ -2,7 +2,12 @@
 	<ul class="nav-links">
 		@for (link of links; track link.href) {
 			<li>
-				<a [routerLink]="link.href">{{ link.label }}</a>
+				<a
+					[routerLink]="link.href"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{exact: true}"
+					>{{ link.label }}</a
+				>
 			</li>
 		}
 	</ul>

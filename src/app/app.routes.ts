@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 
-import {Gen1Component} from '@app/gen-1/gen-1.component';
+import {Gen1Component, resolveTitle} from '@app/gen/gen.component';
 import {HomeComponent} from '@app/home/home.component';
 
 export const routes: Routes = [
@@ -15,8 +15,8 @@ export const routes: Routes = [
 		component: HomeComponent
 	},
 	{
-		path: 'dex/gen-1',
-    title: 'Generation 1 | NG Dex',
-		component: Gen1Component
+		path: 'dex/gen/:genNumber',
+		component: Gen1Component,
+    title: resolveTitle
 	}
 ];

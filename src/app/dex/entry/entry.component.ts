@@ -1,4 +1,4 @@
-import { TitleCasePipe } from '@angular/common';
+import {TitleCasePipe} from '@angular/common';
 import {Component, input} from '@angular/core';
 
 import {GenDataItem} from '@app/dex/dex.model';
