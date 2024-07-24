@@ -15,16 +15,10 @@ export class DexService {
 	pokemons = signal<NameAndUrl[]>([]);
 	types = signal<NameAndUrl[]>([]);
 
-	requestLoading = signal(false);
-
 	getPokemonsForGen(gen: number) {
-		this.requestLoading.set(true);
-
 		return this.httpClient.get<GenAPIData>(`${this.pokeAPIUrl}/generation/${gen}`).pipe(
 			map((data) => ({pokemon: data.pokemon_species, types: data.types})),
 			tap((data) => {
-				this.requestLoading.set(false);
-
 				this.pokemons.set(
 					data.pokemon.sort((a, b) => {
 						const aId = Number(a.url.split('/')[6]);
@@ -39,12 +33,6 @@ export class DexService {
 	}
 
 	getPokemonDetail(pokemonId: string) {
-		return this.httpClient
-			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-			.pipe(
-				tap(() => {
-					this.requestLoading.set(false);
-				})
-			);
+		return this.httpClient.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
 	}
 }
