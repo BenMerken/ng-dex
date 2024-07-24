@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Component, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
 
 import {NameAndUrl} from '@app/dex/dex.model';
+import { PokemonNamePipe } from '@app/dex/entry/pokemon-name.pipe';
 import {APIPokemon} from '@app/dex/entry/pokemon.model';
 import {TypesDirective} from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry',
 	standalone: true,
-	imports: [TitleCasePipe, TypesDirective],
+	imports: [PokemonNamePipe, TitleCasePipe, TypesDirective],
 	templateUrl: './entry.component.html',
 	styleUrl: './entry.component.scss'
 })

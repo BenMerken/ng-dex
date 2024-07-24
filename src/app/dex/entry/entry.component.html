@@ -1,8 +1,8 @@
 <li class="entry" [pokeTypes]="pokemonDetail()?.types">
 	@if (pokemonDetail()) {
-		<img [src]="pokemonDetail()?.sprites?.front_default" alt="" />
-		<small>{{ pokemonDetail()?.name | titlecase }}</small>
+		<img [src]="pokemonDetail()!.sprites.front_default" alt="" />
+		<small>{{ pokemonDetail()!.name | pokemonName | titlecase }}</small>
 	} @else {
-		<small>{{ pokemon().name | titlecase }}</small>
+		<small>{{ pokemon().name | pokemonName | titlecase }}</small>
 	}
 </li>
