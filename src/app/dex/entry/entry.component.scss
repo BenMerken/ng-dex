@@ -43,7 +43,7 @@
 }
 
 .bug {
-	background-color: rgba($color: #7cb00e, $alpha: 0.5);
+  @include entryBackground(#7cb00e);
 }
 
 .fire {
