@@ -10,7 +10,7 @@ import {ActivatedRoute, RouterLink} from '@angular/router';
 })
 export class PageNotFoundComponent implements AfterViewInit {
 	private destroyRef = inject(DestroyRef);
-  private activatedRoute = inject(ActivatedRoute)
+	private activatedRoute = inject(ActivatedRoute);
 
 	ngAfterViewInit(): void {
 		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
-import {ActivatedRoute, ResolveFn} from '@angular/router';
+import {ActivatedRoute, ResolveFn, RouterOutlet} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
@@ -7,7 +7,7 @@ import {EntryComponent} from '@app/dex/entry/entry.component';
 @Component({
 	selector: 'dex-gen',
 	standalone: true,
-	imports: [EntryComponent],
+	imports: [EntryComponent, RouterOutlet],
 	templateUrl: './gen.component.html',
 	styleUrl: './gen.component.scss'
 })

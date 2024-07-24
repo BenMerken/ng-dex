@@ -7,12 +7,6 @@
 }
 
 .entry {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.4rem;
-
 	padding: 1rem 2rem;
 
 	@include entryBackground(#000000);
@@ -22,16 +16,27 @@
 		transform: scale(1.5);
 	}
 
-	* {
+	a {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		gap: 0.4rem;
 
-		padding: 0.2rem;
-		width: 100%;
+		color: #000000;
+		text-decoration: none;
 
-		background-color: #ffffff;
-		border-radius: 4px;
+		* {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			padding: 0.2rem;
+			width: 100%;
+
+			background-color: #ffffff;
+			border-radius: 4px;
+		}
 	}
 }
 

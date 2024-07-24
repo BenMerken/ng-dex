@@ -1,7 +1,9 @@
 <li class="entry" [pokeTypes]="pokemonDetail()?.types">
 	@if (pokemonDetail()) {
-		<img [src]="pokemonDetail()!.sprites.front_default" alt="" width="103" height="103" />
-		<small>{{ pokemonDetail()!.name | pokemonName | titlecase }}</small>
+		<a [routerLink]="detailLink()">
+			<img [src]="pokemonDetail()!.sprites.front_default" alt="" width="103" height="103" />
+			<small>{{ pokemonDetail()!.name | pokemonName | titlecase }}</small>
+		</a>
 	} @else {
 		<div class="image-placeholder"></div>
 		<small>{{ pokemon().name | pokemonName | titlecase }}</small>
