@@ -17,7 +17,7 @@ export class HeaderComponent {
 	links: HeaderLink[] = [
 		{
 			label: 'Home',
-			href: '/dex'
+			href: '/'
 		},
 		{
 			label: 'Gen 1',
