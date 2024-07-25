@@ -1,15 +1,9 @@
-@mixin entryBackground($color) {
-	background-color: rgba($color: $color, $alpha: 0.5);
-
-	&:hover {
-		background-color: rgba($color: $color, $alpha: 1);
-	}
-}
+@use '@styles/utils.scss' as *;
 
 .entry {
 	padding: 1rem 2rem;
 
-	@include entryBackground(#000000);
+	@include pokemonTypes;
 	border-radius: 8px;
 
 	&:hover {
@@ -45,24 +39,4 @@
 	height: 103px;
 
 	background-color: #ffffff;
-}
-
-.bug {
-	@include entryBackground(#7cb00e);
-}
-
-.fire {
-	@include entryBackground(#db5929);
-}
-
-.grass {
-	@include entryBackground(#009202);
-}
-
-.poison {
-	@include entryBackground(#9900c8);
-}
-
-.water {
-	@include entryBackground(#025dc4);
 }

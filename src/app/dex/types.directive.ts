@@ -3,7 +3,7 @@ import {AfterContentChecked, Directive, ElementRef, input, OnInit} from '@angula
 import {APIPokemonType} from '@app/dex/entry/pokemon.model';
 
 @Directive({
-	selector: 'li[pokeTypes]',
+	selector: '[pokeTypes]',
 	standalone: true
 })
 export class TypesDirective implements AfterContentChecked {

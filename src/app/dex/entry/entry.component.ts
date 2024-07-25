@@ -24,7 +24,7 @@ export class EntryComponent implements OnInit {
 	detailLink = computed(() => `pokemon/${this.pokemonDetail()?.id}`);
 
 	ngOnInit(): void {
-		const sub = this.dexService.getPokemonDetail(this.pokemon().url.split('/')[6]).subscribe({
+		const sub = this.dexService.getPokemonForId(this.pokemon().url.split('/')[6]).subscribe({
 			next: (data) => {
 				this.pokemonDetail.set(data);
 			}

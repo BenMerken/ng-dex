@@ -1,13 +1,13 @@
-import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, DestroyRef, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, ResolveFn} from '@angular/router';
 
-import {APIPokemon} from '../pokemon.model';
 import {DexService} from '@app/dex/dex.service';
+import { TypesDirective } from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry-detail',
 	standalone: true,
-	imports: [],
+	imports: [TypesDirective],
 	templateUrl: './entry-detail.component.html',
 	styleUrl: './entry-detail.component.scss'
 })
@@ -16,15 +16,11 @@ export class EntryDetailComponent implements OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 
-	pokemon = computed(() => this.dexService.pokemonDetail())
+	pokemon = computed(() => this.dexService.pokemonDetail());
 
 	ngOnInit(): void {
 		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
-			const pokemonSub = this.dexService.getPokemonDetail(params['pokemonId']).subscribe({
-				next: (pokemon) => {
-					this.dexService.updateDexDetail(pokemon);
-				}
-			});
+			const pokemonSub = this.dexService.getPokemonDetail(params['pokemonId']).subscribe();
 
 			this.destroyRef.onDestroy(() => {
 				pokemonSub.unsubscribe();
@@ -40,5 +36,5 @@ export class EntryDetailComponent implements OnInit {
 export const resolvePageTitle: ResolveFn<string> = () => {
 	const dexService = inject(DexService);
 
-  return `${dexService.pokemonDetail()?.name} | NG Dex`
-}
+	return `${dexService.pokemonDetail()?.name} | NG Dex`;
+};

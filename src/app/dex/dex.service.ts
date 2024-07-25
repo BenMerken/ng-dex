@@ -36,11 +36,15 @@ export class DexService {
 		);
 	}
 
-	getPokemonDetail(pokemonId: string) {
+	getPokemonForId(pokemonId: string) {
 		return this.httpClient.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
 	}
 
-	updateDexDetail(pokemon: APIPokemon) {
-		this._pokemonDetail.set(pokemon);
+	getPokemonDetail(pokemonId: string) {
+		return this.getPokemonForId(pokemonId).pipe(
+			tap((pokemon) => {
+				this._pokemonDetail.set(pokemon);
+			})
+		);
 	}
 }
