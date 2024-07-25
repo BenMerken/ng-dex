@@ -5,7 +5,6 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 import {NameAndUrl} from '@app/dex/dex.model';
 import {DexService} from '@app/dex/dex.service';
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
-import {APIPokemon} from '@app/dex/entry/pokemon.model';
 import {TypesDirective} from '@app/dex/types.directive';
 
 @Component({
@@ -20,15 +19,15 @@ export class EntryComponent implements OnInit {
 	private destroyRef = inject(DestroyRef);
 
 	pokemon = input.required<NameAndUrl>();
-	pokemonDetail = signal<APIPokemon | null>(null);
+	pokemonDetail = computed(() =>
+		this.dexService
+			.pokemonDetails()
+			.find((pokemon) => pokemon.id.toString() === this.pokemon().url.split('/')[6])
+	);
 	detailLink = computed(() => `pokemon/${this.pokemonDetail()?.id}`);
 
 	ngOnInit(): void {
-		const sub = this.dexService.getPokemonForId(this.pokemon().url.split('/')[6]).subscribe({
-			next: (data) => {
-				this.pokemonDetail.set(data);
-			}
-		});
+		const sub = this.dexService.getPokemonForId(this.pokemon().url.split('/')[6]).subscribe();
 
 		this.destroyRef.onDestroy(() => {
 			sub.unsubscribe();

@@ -13,11 +13,11 @@ export class DexService {
 	private pokeAPIUrl = 'https://pokeapi.co/api/v2';
 	private _pokemons = signal<NameAndUrl[]>([]);
 	private _pokemonTypes = signal<NameAndUrl[]>([]);
-	private _pokemonDetail = signal<APIPokemon | null>(null);
+	private _pokemonDetails = signal<APIPokemon[]>([]);
 
 	pokemons = this._pokemons.asReadonly();
 	types = this._pokemonTypes.asReadonly();
-	pokemonDetail = this._pokemonDetail.asReadonly();
+	pokemonDetails = this._pokemonDetails.asReadonly();
 
 	getPokemonsForGen(gen: number) {
 		return this.httpClient.get<GenAPIData>(`${this.pokeAPIUrl}/generation/${gen}`).pipe(
@@ -37,14 +37,20 @@ export class DexService {
 	}
 
 	getPokemonForId(pokemonId: string) {
-		return this.httpClient.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-	}
+		return this.httpClient
+			.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+			.pipe(
+				tap((pokemon) => {
+					this._pokemonDetails.update((old) => {
+						const a = old.find((pokemon) => pokemon.id.toString() === pokemonId);
 
-	getPokemonDetail(pokemonId: string) {
-		return this.getPokemonForId(pokemonId).pipe(
-			tap((pokemon) => {
-				this._pokemonDetail.set(pokemon);
-			})
-		);
+						if (a) {
+							return old.map((pokemon) => (a.id === pokemon.id ? {...a} : pokemon));
+						}
+
+						return [...old, pokemon];
+					});
+				})
+			);
 	}
 }

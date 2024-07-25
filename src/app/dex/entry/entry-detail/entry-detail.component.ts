@@ -1,8 +1,8 @@
-import {Component, computed, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
 import {ActivatedRoute, ResolveFn} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
-import { TypesDirective } from '@app/dex/types.directive';
+import {TypesDirective} from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry-detail',
@@ -16,15 +16,29 @@ export class EntryDetailComponent implements OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 
-	pokemon = computed(() => this.dexService.pokemonDetail());
+	pokemonId = input.required<string>();
+
+	pokemon = computed(() =>
+		this.dexService
+			.pokemonDetails()
+			.find((pokemon) => pokemon.id.toString() === this.pokemonId())
+	);
 
 	ngOnInit(): void {
 		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
-			const pokemonSub = this.dexService.getPokemonDetail(params['pokemonId']).subscribe();
+			const pokemonDetail = this.dexService
+				.pokemonDetails()
+				.find((pokemon) => pokemon.id.toString() === params['pokemonId']);
 
-			this.destroyRef.onDestroy(() => {
-				pokemonSub.unsubscribe();
-			});
+			if (pokemonDetail) {
+				return;
+			} else {
+				const pokemonSub = this.dexService.getPokemonForId(params['pokemonId']).subscribe();
+
+				this.destroyRef.onDestroy(() => {
+					pokemonSub.unsubscribe();
+				});
+			}
 		});
 
 		this.destroyRef.onDestroy(() => {
@@ -33,8 +47,8 @@ export class EntryDetailComponent implements OnInit {
 	}
 }
 
-export const resolvePageTitle: ResolveFn<string> = () => {
+export const resolvePageTitle: ResolveFn<string> = (activatedRoute) => {
 	const dexService = inject(DexService);
 
-	return `${dexService.pokemonDetail()?.name} | NG Dex`;
+	return `${dexService.pokemonDetails().find((pokemon) => pokemon.id === activatedRoute.params['pokemonId'])?.name} | NG Dex`;
 };
