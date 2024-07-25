@@ -11,15 +11,15 @@ import {EntryComponent} from '@app/dex/entry/entry.component';
 	templateUrl: './gen.component.html',
 	styleUrl: './gen.component.scss'
 })
-export class Gen1Component implements AfterViewInit, OnInit {
+export class GenComponent implements AfterViewInit, OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 	private activatedRoute = inject(ActivatedRoute);
 
 	genNumber = input.required<number>();
 
-	pokemons = this.dexService.pokemons.asReadonly();
-	types = this.dexService.types.asReadonly();
+	pokemons = this.dexService.pokemons;
+	types = this.dexService.types;
 
 	loading = signal(false);
 	error = signal(null);

@@ -1,5 +1,5 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {ActivatedRoute, ResolveFn} from '@angular/router';
 
 import {APIPokemon} from '../pokemon.model';
 import {DexService} from '@app/dex/dex.service';
@@ -16,13 +16,13 @@ export class EntryDetailComponent implements OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 
-	pokemon = signal<APIPokemon | null>(null);
+	pokemon = computed(() => this.dexService.pokemonDetail())
 
 	ngOnInit(): void {
 		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
 			const pokemonSub = this.dexService.getPokemonDetail(params['pokemonId']).subscribe({
 				next: (pokemon) => {
-					this.pokemon.set(pokemon);
+					this.dexService.updateDexDetail(pokemon);
 				}
 			});
 
@@ -35,4 +35,10 @@ export class EntryDetailComponent implements OnInit {
 			activatedRouteSub.unsubscribe();
 		});
 	}
+}
+
+export const resolvePageTitle: ResolveFn<string> = () => {
+	const dexService = inject(DexService);
+
+  return `${dexService.pokemonDetail()?.name} | NG Dex`
 }

@@ -11,15 +11,19 @@ import {APIPokemon} from '@app/dex/entry/pokemon.model';
 export class DexService {
 	private httpClient = inject(HttpClient);
 	private pokeAPIUrl = 'https://pokeapi.co/api/v2';
+	private _pokemons = signal<NameAndUrl[]>([]);
+	private _pokemonTypes = signal<NameAndUrl[]>([]);
+	private _pokemonDetail = signal<APIPokemon | null>(null);
 
-	pokemons = signal<NameAndUrl[]>([]);
-	types = signal<NameAndUrl[]>([]);
+	pokemons = this._pokemons.asReadonly();
+	types = this._pokemonTypes.asReadonly();
+	pokemonDetail = this._pokemonDetail.asReadonly();
 
 	getPokemonsForGen(gen: number) {
 		return this.httpClient.get<GenAPIData>(`${this.pokeAPIUrl}/generation/${gen}`).pipe(
 			map((data) => ({pokemon: data.pokemon_species, types: data.types})),
 			tap((data) => {
-				this.pokemons.set(
+				this._pokemons.set(
 					data.pokemon.sort((a, b) => {
 						const aId = Number(a.url.split('/')[6]);
 						const bId = Number(b.url.split('/')[6]);
@@ -27,12 +31,16 @@ export class DexService {
 						return aId - bId;
 					})
 				);
-				this.types.set(data.types);
+				this._pokemonTypes.set(data.types);
 			})
 		);
 	}
 
 	getPokemonDetail(pokemonId: string) {
 		return this.httpClient.get<APIPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+	}
+
+	updateDexDetail(pokemon: APIPokemon) {
+		this._pokemonDetail.set(pokemon);
 	}
 }
