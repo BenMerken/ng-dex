@@ -1,6 +1,6 @@
 import {TitleCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterLinkActive} from '@angular/router';
 
 import {NameAndUrl} from '@app/dex/dex.model';
 import {DexService} from '@app/dex/dex.service';
@@ -11,7 +11,7 @@ import {TypesDirective} from '@app/dex/types.directive';
 @Component({
 	selector: 'dex-entry',
 	standalone: true,
-	imports: [PokemonNamePipe, TitleCasePipe, TypesDirective, RouterLink],
+	imports: [PokemonNamePipe, TitleCasePipe, TypesDirective, RouterLink, RouterLinkActive],
 	templateUrl: './entry.component.html',
 	styleUrl: './entry.component.scss'
 })

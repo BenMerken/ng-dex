@@ -6,7 +6,7 @@
 	@include pokemonTypes;
 	border-radius: 8px;
 
-	&:hover {
+	&:not(.active):hover {
 		transform: scale(1.5);
 	}
 

@@ -1,4 +1,4 @@
-<li class="entry" [pokeTypes]="pokemonDetail()?.types">
+<li routerLinkActive="solid active" class="entry" [pokeTypes]="pokemonDetail()?.types">
 	@if (pokemonDetail()) {
 		<a [routerLink]="detailLink()">
 			<img [src]="pokemonDetail()!.sprites.front_default" alt="" width="103" height="103" />
