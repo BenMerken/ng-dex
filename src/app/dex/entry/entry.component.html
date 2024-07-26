@@ -2,10 +2,10 @@
 	@if (pokemonDetail()) {
 		<a [routerLink]="detailLink()">
 			<img [src]="pokemonDetail()!.sprites.front_default" alt="" width="103" height="103" />
-			<small>{{ pokemonDetail()!.name | pokemonName | titlecase }}</small>
+			<small>{{ pokemonDetail()!.name | pokemonName | uppercase }}</small>
 		</a>
 	} @else {
 		<div class="image-placeholder"></div>
-		<small>{{ pokemon().name | pokemonName | titlecase }}</small>
+		<small>{{ pokemon().name | pokemonName | uppercase }}</small>
 	}
 </li>

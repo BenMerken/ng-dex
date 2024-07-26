@@ -1,8 +1,17 @@
 @font-face {
-	font-family: pokemon-gen-1;
-	src: url('../../public/fonts/pokemon_generation_1.ttf') format('truetype');
+	font-family: pokemon-gen-1-2;
+	src: url('../../public/fonts/pokemon_generation_1_2.ttf') format('truetype');
 }
 
-@mixin gen1() {
-	font-family: pokemon-gen-1, sans-serif;
+@font-face {
+	font-family: pokemon-gen-3;
+	src: url('../../public/fonts/pokemon_generation_3.ttf') format('truetype');
+}
+
+@mixin gen1-2() {
+	font-family: pokemon-gen-1-2, sans-serif;
+}
+
+@mixin gen2() {
+	font-family: pokemon-gen-3, sans-serif;
 }

@@ -1,4 +1,4 @@
-import {TitleCasePipe} from '@angular/common';
+import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
 import {ActivatedRoute, ResolveFn} from '@angular/router';
 
@@ -9,7 +9,7 @@ import {TypesDirective} from '@app/dex/types.directive';
 @Component({
 	selector: 'dex-entry-detail',
 	standalone: true,
-	imports: [TypesDirective, TitleCasePipe, PokemonNamePipe],
+	imports: [TypesDirective, UpperCasePipe, PokemonNamePipe],
 	templateUrl: './entry-detail.component.html',
 	styleUrl: './entry-detail.component.scss'
 })

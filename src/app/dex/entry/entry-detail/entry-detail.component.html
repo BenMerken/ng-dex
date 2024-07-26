@@ -6,7 +6,7 @@
 			width="255"
 			height="255"
 		/>
-		<h2>{{ pokemon()!.name | pokemonName | titlecase }}</h2>
+		<h2>{{ pokemon()!.name | pokemonName | uppercase }}</h2>
 		<ul class="types-list data-container">
 			@for (type of pokemon()?.types; track type.type.name) {
 				<li class="solid" [pokeTypes]="[type]">
