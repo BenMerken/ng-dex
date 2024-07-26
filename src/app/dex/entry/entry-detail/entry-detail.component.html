@@ -6,4 +6,11 @@
 		height="255"
 	/>
 	<h2>{{ pokemon()?.name }}</h2>
+	<ul class="types-list">
+		@for (type of pokemon()?.types; track type.type.name) {
+			<li class="solid" [pokeTypes]="[type]">
+				{{ type.type.name }}
+			</li>
+		}
+	</ul>
 </article>
