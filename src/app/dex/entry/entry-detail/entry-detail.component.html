@@ -1,4 +1,9 @@
 <article class="entry-detail solid" [pokeTypes]="pokemon()?.types">
-    <img [src]="pokemon()?.sprites?.front_default" [alt]="pokemon()?.name" width="255" height="255">
+	<img
+		[src]="pokemon()?.sprites?.front_default"
+		[alt]="pokemon()?.name"
+		width="255"
+		height="255"
+	/>
 	<h2>{{ pokemon()?.name }}</h2>
 </article>
