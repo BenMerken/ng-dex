@@ -1,0 +1,8 @@
+@font-face {
+	font-family: pokemon-gen-1;
+	src: url('../../public/fonts/pokemon_generation_1.ttf') format('truetype');
+}
+
+@mixin gen1() {
+	font-family: pokemon-gen-1, sans-serif;
+}

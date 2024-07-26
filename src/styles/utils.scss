@@ -16,7 +16,7 @@ $mobileBreakpoinr: 640px;
 		background-color: rgba($color: $color, $alpha: 1);
 	}
 
-	 & *:not(img) {
+	& *:not(img) {
 		background-color: lighten($color: $color, $amount: 20);
 	}
 }

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@styles/fonts.scss' as *;
 @use '@styles/utils.scss' as *;
 
 * {
@@ -27,6 +28,7 @@ body {
 	background-repeat: no-repeat;
 
 	&.gen-1 {
+    @include gen1;
 		background-image: url('../public/gen-1-background.jpg');
 	}
 	&.gen-2 {
