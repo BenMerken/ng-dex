@@ -1,13 +1,15 @@
+import {TitleCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
 import {ActivatedRoute, ResolveFn} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
+import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
 
 @Component({
 	selector: 'dex-entry-detail',
 	standalone: true,
-	imports: [TypesDirective],
+	imports: [TypesDirective, TitleCasePipe, PokemonNamePipe],
 	templateUrl: './entry-detail.component.html',
 	styleUrl: './entry-detail.component.scss'
 })

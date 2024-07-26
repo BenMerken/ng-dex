@@ -1,16 +1,20 @@
 <article class="entry-detail solid" [pokeTypes]="pokemon()?.types">
-	<img
-		[src]="pokemon()?.sprites?.front_default"
-		[alt]="pokemon()?.name"
-		width="255"
-		height="255"
-	/>
-	<h2>{{ pokemon()?.name }}</h2>
-	<ul class="types-list">
-		@for (type of pokemon()?.types; track type.type.name) {
-			<li class="solid" [pokeTypes]="[type]">
-				{{ type.type.name }}
-			</li>
-		}
-	</ul>
+	@if (pokemon()) {
+		<img
+			[src]="pokemon()?.sprites?.front_default"
+			[alt]="pokemon()?.name"
+			width="255"
+			height="255"
+		/>
+		<h2>{{ pokemon()!.name | pokemonName | titlecase }}</h2>
+		<ul class="types-list data-container">
+			@for (type of pokemon()?.types; track type.type.name) {
+				<li class="solid" [pokeTypes]="[type]">
+					{{ type.type.name }}
+				</li>
+			}
+		</ul>
+	} @else {
+		<p>Loading Pokémon...</p>
+	}
 </article>
