@@ -1,8 +1,6 @@
 @use '@styles/utils.scss' as *;
 
 .entry-detail {
-	@include pokemonTypes;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,8 +16,11 @@
 		padding: 1rem 0.5rem;
 	}
 
-	* {
+	img {
 		background-color: #ffffff;
+	}
+
+	* {
 		border: 1px solid #000000;
 		border-radius: 8px;
 	}
@@ -30,16 +31,12 @@
 
 	padding: 0.5rem;
 
-	background-color: #ffffff;
-
 	li {
-		@include pokemonTypes();
-
 		padding: 0.2rem;
 
 		min-width: 64px;
 
-    text-align: center;
+		text-align: center;
 
 		border: none;
 		border-radius: 0;

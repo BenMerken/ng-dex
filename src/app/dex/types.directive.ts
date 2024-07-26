@@ -15,8 +15,8 @@ export class TypesDirective implements OnChanges {
 		const {currentValue, previousValue} = changes['pokeTypes'];
 
 		previousValue?.forEach((typeObj: APIPokemonType) => {
-			this.el.nativeElement.classList.remove(typeObj.type.name);
+			this.el.nativeElement.classList.remove(`bg-${typeObj.type.name}`);
 		});
-		currentValue && this.el.nativeElement.classList.add(currentValue[0].type.name);
+		currentValue && this.el.nativeElement.classList.add(`bg-${currentValue[0].type.name}`);
 	}
 }

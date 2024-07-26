@@ -3,7 +3,6 @@
 .entry {
 	padding: 1rem 2rem;
 
-	@include pokemonTypes;
 	border-radius: 8px;
 
 	&:not(.active):hover {

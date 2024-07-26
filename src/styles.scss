@@ -20,6 +20,8 @@ html {
 }
 
 body {
+  @include pokemonTypes;
+
 	background-image: url('../public/home-background.avif');
 	background-size: cover;
 	background-repeat: no-repeat;
