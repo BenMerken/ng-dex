@@ -15,7 +15,7 @@ import {TypesDirective} from '@app/dex/types.directive';
 export class FilterComponent {
 	private dexService = inject(DexService);
 
-	typesList = computed(() => this.dexService.types().map((type) => ({type: type})));
+	typesList = computed(() => this.dexService.types());
 
 	form = new FormGroup({
 		name: new FormControl<string>(''),

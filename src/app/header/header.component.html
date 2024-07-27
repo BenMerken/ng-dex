@@ -5,7 +5,7 @@
 				<a
 					[routerLink]="link.href"
 					routerLinkActive="active"
-					[routerLinkActiveOptions]="{exact: true}"
+					[routerLinkActiveOptions]="{exact: link.href === '/'}"
 					>{{ link.label }}</a
 				>
 			</li>

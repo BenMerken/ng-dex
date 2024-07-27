@@ -4,10 +4,10 @@
 		<input type="text" formControlName="name" />
 	</label>
 	<fieldset class="types" formArrayName="types">
-		@for (type of typesList(); track type.type.name) {
-			<label class="solid" [pokeTypes]="[type]">
-				<input type="checkbox" [name]="type.type.name" [id]="type.type.name" />
-				{{ type.type.name | uppercase }}
+		@for (type of typesList(); track type.name) {
+			<label class="solid" [pokeTypes]="[{type}]">
+				<input type="checkbox" [name]="type.name" [id]="type.name" />
+				{{ type.name | uppercase }}
 			</label>
 		}
 	</fieldset>
