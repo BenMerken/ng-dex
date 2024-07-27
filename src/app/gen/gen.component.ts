@@ -3,11 +3,12 @@ import {ActivatedRoute, ResolveFn, RouterOutlet} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
+import {FilterComponent} from '../dex/filter/filter.component';
 
 @Component({
 	selector: 'dex-gen',
 	standalone: true,
-	imports: [EntryComponent, RouterOutlet],
+	imports: [EntryComponent, RouterOutlet, FilterComponent],
 	templateUrl: './gen.component.html',
 	styleUrl: './gen.component.scss'
 })
@@ -25,6 +26,7 @@ export class GenComponent implements AfterViewInit, OnInit {
 	error = signal(null);
 
 	ngOnInit(): void {
+		const getTypesSub = this.dexService.getTypes().subscribe();
 		const activatedRouteSub = this.activatedRoute.params.subscribe((params) => {
 			this.loading.set(true);
 
@@ -44,6 +46,7 @@ export class GenComponent implements AfterViewInit, OnInit {
 
 		this.destroyRef.onDestroy(() => {
 			activatedRouteSub.unsubscribe();
+			getTypesSub.unsubscribe();
 		});
 	}
 

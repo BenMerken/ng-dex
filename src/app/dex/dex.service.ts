@@ -19,6 +19,15 @@ export class DexService {
 	types = this._pokemonTypes.asReadonly();
 	pokemonDetails = this._pokemonDetails.asReadonly();
 
+	getTypes() {
+		return this.httpClient.get<{results: NameAndUrl[]}>(`${this.pokeAPIUrl}/type`).pipe(
+			map((data) => data.results),
+			tap((data) => {
+				this._pokemonTypes.set(data);
+			})
+		);
+	}
+
 	getPokemonsForGen(gen: number) {
 		return this.httpClient.get<GenAPIData>(`${this.pokeAPIUrl}/generation/${gen}`).pipe(
 			map((data) => ({pokemon: data.pokemon_species, types: data.types})),
@@ -31,7 +40,6 @@ export class DexService {
 						return aId - bId;
 					})
 				);
-				this._pokemonTypes.set(data.types);
 			})
 		);
 	}

@@ -2,15 +2,18 @@
 	@if (loading()) {
 		<p>Loading dex for gen {{ genNumber() }}...</p>
 	} @else {
-		<ul class="dex-list">
-			@for (pokemon of pokemons(); track pokemon.name) {
-				@defer (on viewport) {
-					<dex-entry [pokemon]="pokemon" />
-				} @placeholder {
-					<p>Loading dex entry...</p>
+		<section>
+			<dex-filter />
+			<ul class="dex-list">
+				@for (pokemon of pokemons(); track pokemon.name) {
+					@defer (on viewport) {
+						<dex-entry [pokemon]="pokemon" />
+					} @placeholder {
+						<p>Loading dex entry...</p>
+					}
 				}
-			}
-		</ul>
+			</ul>
+		</section>
 	}
 	<router-outlet></router-outlet>
 </main>
