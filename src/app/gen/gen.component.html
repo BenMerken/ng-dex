@@ -4,15 +4,23 @@
 	} @else {
 		<section>
 			<dex-filter (filterChange)="onPokemonFilterChange($event)" />
-			<ul class="dex-list">
-				@for (pokemon of pokemons(); track pokemon.name) {
-					@defer (on viewport) {
-						<dex-entry [pokemon]="pokemon" />
-					} @placeholder {
-						<p>Loading dex entry...</p>
+			@if (pokemons().length > 0) {
+				<ul class="dex-list">
+					@for (pokemon of pokemons(); track pokemon.name) {
+						@defer (on viewport) {
+							<dex-entry [pokemon]="pokemon" />
+						} @placeholder {
+							<p>Loading dex entry...</p>
+						}
 					}
-				}
-			</ul>
+				</ul>
+			} @else {
+				<p>
+					No Pokémon found for filters name="{{ pokemonsFilters()?.name }}" and types="{{
+						typesFilterString()
+					}}".
+				</p>
+			}
 		</section>
 	}
 	<router-outlet></router-outlet>

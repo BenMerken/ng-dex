@@ -1,13 +1,14 @@
 <form [formGroup]="form">
-		<small [class.invisible]="!form.controls.types.dirty">
-			Please note, since PokeAPI only resturns a Pokémon's type on a details request,
-			filtering on types only returns Pokémon whose details have been loaded.
-		</small>
+	<small [class.invisible]="!form.controls.types.dirty">
+		Please note, since PokeAPI only resturns a Pokémon's type on a details request, filtering on
+		types only returns Pokémon whose details have been loaded.
+	</small>
 	<label
 		>Filter by name:
-		<input type="text" formControlName="name" />
+		<input type="text" formControlName="name" placeholder="Enter name..." />
 	</label>
 	<fieldset class="types" formArrayName="types">
+		<legend>Filter on types</legend>
 		@for (type of typesList(); track type.name; let i = $index) {
 			<label class="solid" [pokeTypes]="[{type}]">
 				<input type="checkbox" [formControlName]="i" />

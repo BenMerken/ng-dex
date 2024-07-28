@@ -29,6 +29,13 @@ export class GenComponent implements AfterViewInit, OnInit {
 	genNumber = input.required<number>();
 
 	pokemonsFilters = signal<PokemonFilterValues | null>(null);
+	typesFilterString = computed(
+		() =>
+			this.pokemonsFilters()
+				?.types.filter((type) => type.checked)
+				.map((type) => type.name)
+				.join(', ') ?? ''
+	);
 	pokemons = computed(() => {
 		const pokemonFilters = this.pokemonsFilters();
 
