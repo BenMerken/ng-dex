@@ -5,6 +5,7 @@ import {ActivatedRoute, ResolveFn} from '@angular/router';
 import {DexService} from '@app/dex/dex.service';
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
+import titleCase from '@utils/title-case';
 
 @Component({
 	selector: 'dex-entry-detail',
@@ -52,5 +53,9 @@ export class EntryDetailComponent implements OnInit {
 export const resolvePageTitle: ResolveFn<string> = (activatedRoute) => {
 	const dexService = inject(DexService);
 
-	return `${dexService.pokemonDetails().find((pokemon) => pokemon.id === activatedRoute.params['pokemonId'])?.name} | NG Dex`;
+	const pokemonName = dexService
+		.pokemonDetails()
+		.find((pokemon) => pokemon.id.toString() === activatedRoute.params['pokemonId'])?.name;
+
+	return `${titleCase(pokemonName ?? 'Pokémon Detail')} | NG Dex`;
 };
