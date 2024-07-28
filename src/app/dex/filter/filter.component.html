@@ -4,9 +4,9 @@
 		<input type="text" formControlName="name" />
 	</label>
 	<fieldset class="types" formArrayName="types">
-		@for (type of typesList(); track type.name) {
+		@for (type of typesList(); track type.name; let i = $index) {
 			<label class="solid" [pokeTypes]="[{type}]">
-				<input type="checkbox" [name]="type.name" [id]="type.name" />
+				<input type="checkbox" [name]="type.name" [id]="type.name" [formControlName]="i" />
 				{{ type.name | uppercase }}
 			</label>
 		}

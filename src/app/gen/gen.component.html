@@ -3,7 +3,7 @@
 		<p>Loading dex for gen {{ genNumber() }}...</p>
 	} @else {
 		<section>
-			<dex-filter />
+			<dex-filter (filterChange)="onPokemonFilterChange($event)" />
 			<ul class="dex-list">
 				@for (pokemon of pokemons(); track pokemon.name) {
 					@defer (on viewport) {

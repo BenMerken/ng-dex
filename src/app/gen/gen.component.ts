@@ -1,9 +1,18 @@
-import {AfterViewInit, Component, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	computed,
+	DestroyRef,
+	inject,
+	input,
+	OnInit,
+	signal
+} from '@angular/core';
 import {ActivatedRoute, ResolveFn, RouterOutlet} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
-import {FilterComponent} from '../dex/filter/filter.component';
+import {FilterComponent, PokemonFilterValues} from '../dex/filter/filter.component';
 
 @Component({
 	selector: 'dex-gen',
@@ -19,7 +28,20 @@ export class GenComponent implements AfterViewInit, OnInit {
 
 	genNumber = input.required<number>();
 
-	pokemons = this.dexService.pokemons;
+	pokemonsFilters = signal<PokemonFilterValues | null>(null);
+	pokemons = computed(() => {
+		if (!this.pokemonsFilters()) {
+			return this.dexService.pokemons();
+		}
+
+		return this.dexService
+			.pokemons()
+			.filter((pokemon) =>
+				pokemon.name
+					.toLowerCase()
+					.includes(this.pokemonsFilters()?.name?.toLowerCase() ?? '')
+			);
+	});
 	types = this.dexService.types;
 
 	loading = signal(false);
@@ -67,6 +89,10 @@ export class GenComponent implements AfterViewInit, OnInit {
 		this.destroyRef.onDestroy(() => {
 			activatedRouteSub.unsubscribe();
 		});
+	}
+
+	onPokemonFilterChange(filterValues: PokemonFilterValues) {
+		this.pokemonsFilters.set(filterValues);
 	}
 }
 

@@ -8,6 +8,12 @@
 
 		border-radius: 16px;
 
+		&:has(input[type='checkbox']) {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
 		&:has(input[type='checkbox']:checked) {
 			border: 2px solid #000000;
 		}
