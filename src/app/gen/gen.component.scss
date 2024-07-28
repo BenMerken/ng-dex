@@ -16,6 +16,8 @@
 	align-items: center;
 	gap: 0.4rem;
 
+	padding: 1rem;
+
 	@include desktop {
 		flex-direction: row;
 		flex-wrap: wrap;

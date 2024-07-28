@@ -44,15 +44,13 @@ export class FilterComponent implements OnInit {
 	ngOnInit(): void {
 		const formChangeSub = this.form.valueChanges.subscribe({
 			next: (change) => {
-				if (change.name && change.types?.length) {
-					this.filterChange.emit({
-						name: change.name,
-						types: change.types.map((typeChecked, index) => ({
-							name: this.typesList()[index].name,
-							checked: typeChecked
-						}))
-					});
-				}
+				this.filterChange.emit({
+					name: change.name ?? '',
+					types: change.types!.map((typeChecked, index) => ({
+						name: this.typesList()[index].name,
+						checked: typeChecked
+					}))
+				});
 			}
 		});
 

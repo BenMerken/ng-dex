@@ -1,3 +1,17 @@
+:host {
+	display: block;
+	position: sticky;
+	top: 0;
+
+	padding: 1rem;
+
+	background-color: rgba($color: #ffffff, $alpha: 0.6);
+}
+
+label {
+	display: block;
+}
+
 .types {
 	display: flex;
 	flex-wrap: wrap;
