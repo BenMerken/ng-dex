@@ -30,17 +30,36 @@ export class GenComponent implements AfterViewInit, OnInit {
 
 	pokemonsFilters = signal<PokemonFilterValues | null>(null);
 	pokemons = computed(() => {
-		if (!this.pokemonsFilters()) {
+		const pokemonFilters = this.pokemonsFilters();
+
+		if (!pokemonFilters) {
 			return this.dexService.pokemons();
 		}
 
-		return this.dexService
-			.pokemons()
-			.filter((pokemon) =>
+		return this.dexService.pokemons().filter((pokemon) => {
+			const pokemonDetailsNames = pokemonFilters.types.some((type) => type.checked)
+				? this.dexService
+						.pokemonDetails()
+						.filter((pokemon) =>
+							pokemon.types
+								.map((type) => type.type.name)
+								.some((typeName) =>
+									pokemonFilters.types
+										.filter((typeFilter) => typeFilter.checked)
+										.map((type) => type.name)
+										.some((tn) => tn === typeName)
+								)
+						)
+						.map((pokemon) => pokemon.name)
+				: this.dexService.pokemons().map((pokemon) => pokemon.name);
+
+			return (
+				pokemonDetailsNames.includes(pokemon.name) &&
 				pokemon.name
 					.toLowerCase()
 					.includes(this.pokemonsFilters()?.name?.toLowerCase() ?? '')
 			);
+		});
 	});
 	types = this.dexService.types;
 

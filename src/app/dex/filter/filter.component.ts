@@ -1,14 +1,14 @@
 import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, OnInit, output} from '@angular/core';
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 import {DexService} from '@app/dex/dex.service';
 import {TypesDirective} from '@app/dex/types.directive';
 
-export type PokemonFilterValues = Partial<{
-	name: string | null;
-	types: (boolean | null)[];
-}>;
+export type PokemonFilterValues = {
+	name: string;
+	types: {name: string; checked: boolean}[];
+};
 
 @Component({
 	selector: 'dex-filter',
@@ -24,8 +24,19 @@ export class FilterComponent implements OnInit {
 	typesList = computed(() => this.dexService.types());
 
 	form = new FormGroup({
-		name: new FormControl<string>(''),
-		types: new FormArray([...this.typesList().map(() => new FormControl(false))])
+		name: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
+		types: new FormArray(
+			[
+				...this.typesList().map(
+					() =>
+						new FormControl(false, {
+							nonNullable: true,
+							validators: [Validators.required]
+						})
+				)
+			],
+			{validators: [Validators.required]}
+		)
 	});
 
 	filterChange = output<PokemonFilterValues>();
@@ -33,7 +44,15 @@ export class FilterComponent implements OnInit {
 	ngOnInit(): void {
 		const formChangeSub = this.form.valueChanges.subscribe({
 			next: (change) => {
-				this.filterChange.emit(change);
+				if (change.name && change.types?.length) {
+					this.filterChange.emit({
+						name: change.name,
+						types: change.types.map((typeChecked, index) => ({
+							name: this.typesList()[index].name,
+							checked: typeChecked
+						}))
+					});
+				}
 			}
 		});
 
