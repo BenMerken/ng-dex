@@ -19,13 +19,17 @@ import {TypesDirective} from '@app/dex/types.directive';
 			state(
 				'hover',
 				style({
-					transform: 'scale(1.5)'
+					transform: 'scale(1.5)',
+					position: 'relative',
+					'z-index': '999'
 				})
 			),
 			state(
 				'unhover',
 				style({
-					transform: 'scale(1)'
+					transform: 'scale(1)',
+					position: 'static',
+					'z-index': 'initial'
 				})
 			),
 			transition('hover <=> unhover', [animate('100ms ease-in-out')])
