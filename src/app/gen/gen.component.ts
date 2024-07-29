@@ -1,3 +1,4 @@
+import {animate, animateChild, group, query, style, transition, trigger} from '@angular/animations';
 import {
 	AfterViewInit,
 	Component,
@@ -8,7 +9,7 @@ import {
 	OnInit,
 	signal
 } from '@angular/core';
-import {ActivatedRoute, ResolveFn, RouterOutlet} from '@angular/router';
+import {ActivatedRoute, ChildrenOutletContexts, ResolveFn, RouterOutlet} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
@@ -19,12 +20,33 @@ import {FilterComponent, PokemonFilterValues} from '@app/gen/filter/filter.compo
 	standalone: true,
 	imports: [EntryComponent, RouterOutlet, FilterComponent],
 	templateUrl: './gen.component.html',
-	styleUrl: './gen.component.scss'
+	styleUrl: './gen.component.scss',
+	animations: [
+		trigger('routeAnimations', [
+			transition('* <=> PokemonDetailPage', [
+				style({position: 'relative'}),
+				query(':enter, :leave', [
+					style({position: 'absolute', top: 0, left: 0, width: '100%'})
+				]),
+				query(':enter', [style({left: '-100%'})], {optional: true}),
+				query(':leave', animateChild(), {optional: true}),
+				group([
+					query(':leave', [animate('300ms ease-out', style({left: '100%'}))], {
+						optional: true
+					}),
+					query(':enter', [animate('300ms ease-out', style({left: '0%'}))], {
+						optional: true
+					})
+				])
+			])
+		])
+	]
 })
 export class GenComponent implements AfterViewInit, OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 	private activatedRoute = inject(ActivatedRoute);
+	private contexts = inject(ChildrenOutletContexts);
 
 	genNumber = input.required<number>();
 
@@ -119,6 +141,10 @@ export class GenComponent implements AfterViewInit, OnInit {
 
 	onPokemonFilterChange(filterValues: PokemonFilterValues) {
 		this.pokemonsFilters.set(filterValues);
+	}
+
+	getRouteAnimationData() {
+		return this.contexts.getContext('primary')?.route?.snapshot.data?.['animation'];
 	}
 }
 

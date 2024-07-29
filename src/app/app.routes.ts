@@ -21,7 +21,10 @@ export const routes: Routes = [
 			{
 				path: 'pokemon/:pokemonId',
 				component: EntryDetailComponent,
-				title: resolveEntryDetailPageTitle
+				title: resolveEntryDetailPageTitle,
+				data: {
+					animation: 'PokemonDetailPage'
+				}
 			}
 		]
 	},
