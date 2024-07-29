@@ -1,11 +1,10 @@
 import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
-import {ActivatedRoute, ResolveFn} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
-import titleCase from '@utils/title-case';
 
 @Component({
 	selector: 'dex-entry-detail',
@@ -49,13 +48,3 @@ export class EntryDetailComponent implements OnInit {
 		});
 	}
 }
-
-export const resolvePageTitle: ResolveFn<string> = (activatedRoute) => {
-	const dexService = inject(DexService);
-
-	const pokemonName = dexService
-		.pokemonDetails()
-		.find((pokemon) => pokemon.id.toString() === activatedRoute.params['pokemonId'])?.name;
-
-	return `${titleCase(pokemonName ?? 'Pokémon Detail')} | NG Dex`;
-};
