@@ -9,11 +9,14 @@
 	</label>
 	<fieldset class="types" formArrayName="types">
 		<legend>Filter on types</legend>
-		@for (type of typesList(); track type.name; let i = $index) {
-			<label class="solid" [pokeTypes]="[{type}]">
-				<input type="checkbox" [formControlName]="i" />
-				{{ type.name | uppercase }}
-			</label>
+		<!-- Deferred, because rendering the type inputs on the server with SSR causes error messages -->
+		@defer {
+			@for (type of typesList(); track type.name; let i = $index) {
+				<label class="solid" [pokeTypes]="[{type}]">
+					<input type="checkbox" [formControlName]="i" />
+					{{ type.name | uppercase }}
+				</label>
+			}
 		}
 	</fieldset>
 </form>
