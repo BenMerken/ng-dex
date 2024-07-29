@@ -6,9 +6,12 @@ $activeRouteBackgroundColor: #0088ff;
 	top: 0;
 
 	padding: 1rem;
+  height: 6rem;
 
 	background-color: rgba($color: #ffffff, $alpha: 0.5);
 	backdrop-filter: blur(10px);
+
+  z-index: 1;
 }
 
 .nav-links {

@@ -12,7 +12,7 @@ import {ActivatedRoute, ResolveFn, RouterOutlet} from '@angular/router';
 
 import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
-import {FilterComponent, PokemonFilterValues} from '../dex/filter/filter.component';
+import {FilterComponent, PokemonFilterValues} from '@app/gen/filter/filter.component';
 
 @Component({
 	selector: 'dex-gen',
