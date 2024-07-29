@@ -1,5 +1,16 @@
 @use '@styles/utils.scss' as *;
 
+:host {
+	position: sticky;
+  top: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-height: calc(100vh - 6rem);
+}
+
 .entry-detail {
 	display: flex;
 	flex-direction: column;

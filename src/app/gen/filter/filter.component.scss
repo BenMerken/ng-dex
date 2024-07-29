@@ -1,11 +1,11 @@
 :host {
 	display: block;
 	position: sticky;
-	top: 6rem;
+  top: 0;
 
 	padding: 1rem;
 
-	background-color: rgba($color: #ffffff, $alpha: 0.5);
+	background-color: rgba($color: #ffffff, $alpha: 0.9);
 
   z-index: 1;
 }

@@ -3,6 +3,10 @@
 .gen {
 	background-color: rgba($color: #000000, $alpha: 0.2);
 
+  max-height: calc(100vh - 6rem);
+
+  overflow-y: scroll;
+
 	@include desktop {
 		display: grid;
 		grid-template-columns: 2fr 0fr 5fr;
