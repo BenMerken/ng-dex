@@ -1,36 +1,25 @@
 import {Routes} from '@angular/router';
 
-import {GenComponent, resolveTitle as resolveGenPageTitle} from '@app/gen/gen.component';
 import {HomeComponent} from '@app/home/home.component';
-import {PageNotFoundComponent} from '@app/page-not-found/page-not-found.component';
-import {
-	EntryDetailComponent,
-	resolvePageTitle as resolveEntryDetailPageTitle
-} from './dex/entry/entry-detail/entry-detail.component';
 
 export const routes: Routes = [
 	{
 		path: '',
-		component: HomeComponent
+		component: HomeComponent,
+		pathMatch: 'full',
+		loadChildren: () => import('./gen/gen.routes').then((mod) => mod.routes)
 	},
 	{
 		path: 'dex/gen/:genNumber',
-		component: GenComponent,
-		title: resolveGenPageTitle,
-		children: [
-			{
-				path: 'pokemon/:pokemonId',
-				component: EntryDetailComponent,
-				title: resolveEntryDetailPageTitle,
-				data: {
-					animation: 'PokemonDetailPage'
-				}
-			}
-		]
+		loadComponent: () => import('./gen/gen.component').then((mod) => mod.GenComponent),
+		loadChildren: () => import('./gen/gen.routes').then((mod) => mod.routes)
 	},
 	{
 		path: '**',
-		component: PageNotFoundComponent,
+		loadComponent: () =>
+			import('./page-not-found/page-not-found.component').then(
+				(mod) => mod.PageNotFoundComponent
+			),
 		title: '404: Page Not Found'
 	}
 ];
