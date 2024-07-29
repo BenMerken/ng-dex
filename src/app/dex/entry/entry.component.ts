@@ -1,5 +1,6 @@
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UpperCasePipe} from '@angular/common';
-import {Component, computed, DestroyRef, inject, input, OnInit, signal} from '@angular/core';
+import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
 import {NameAndUrl} from '@app/dex/dex.model';
@@ -12,13 +13,31 @@ import {TypesDirective} from '@app/dex/types.directive';
 	standalone: true,
 	imports: [PokemonNamePipe, UpperCasePipe, TypesDirective, RouterLink, RouterLinkActive],
 	templateUrl: './entry.component.html',
-	styleUrl: './entry.component.scss'
+	styleUrl: './entry.component.scss',
+	animations: [
+		trigger('hoverUnhover', [
+			state(
+				'hover',
+				style({
+					transform: 'scale(1.5)'
+				})
+			),
+			state(
+				'unhover',
+				style({
+					transform: 'scale(1)'
+				})
+			),
+			transition('hover <=> unhover', [animate('100ms ease-in-out')])
+		])
+	]
 })
 export class EntryComponent implements OnInit {
 	private dexService = inject(DexService);
 	private destroyRef = inject(DestroyRef);
 
 	pokemon = input.required<NameAndUrl>();
+
 	pokemonDetail = computed(() =>
 		this.dexService
 			.pokemonDetails()
@@ -26,11 +45,17 @@ export class EntryComponent implements OnInit {
 	);
 	detailLink = computed(() => `pokemon/${this.pokemonDetail()?.id}`);
 
+	hovering = false;
+
 	ngOnInit(): void {
 		const sub = this.dexService.getPokemonForId(this.pokemon().url.split('/')[6]).subscribe();
 
 		this.destroyRef.onDestroy(() => {
 			sub.unsubscribe();
 		});
+	}
+
+	toggleHovering(hovering: boolean) {
+		this.hovering = hovering;
 	}
 }

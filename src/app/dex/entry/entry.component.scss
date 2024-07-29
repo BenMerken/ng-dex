@@ -5,10 +5,6 @@
 
 	border-radius: 8px;
 
-	&:not(.active):hover {
-		transform: scale(1.5);
-	}
-
 	a {
 		display: flex;
 		flex-direction: column;
