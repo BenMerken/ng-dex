@@ -7,10 +7,14 @@
 			@if (pokemons().length > 0) {
 				<ul class="dex-list">
 					@for (pokemon of pokemons(); track pokemon.name) {
+						<!-- Deferred view, because fetching every pokemon with SSR slows down app considerably -->
 						@defer (on viewport) {
 							<dex-entry [pokemon]="pokemon" />
-						} @placeholder {
-							<p>Loading dex entry...</p>
+						} @placeholder (minimum 500ms) {
+							<div class="entry-placeholder">
+								<div class="image-placeholder"></div>
+								<div></div>
+							</div>
 						}
 					}
 				</ul>
