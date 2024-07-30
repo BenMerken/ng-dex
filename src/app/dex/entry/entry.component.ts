@@ -41,6 +41,7 @@ export class EntryComponent implements OnInit {
 	private destroyRef = inject(DestroyRef);
 
 	pokemon = input.required<NameAndUrl>();
+	pokemonId = computed(() => this.pokemon().url.split('/')[6]);
 
 	pokemonDetail = computed(() =>
 		this.dexService
@@ -52,7 +53,11 @@ export class EntryComponent implements OnInit {
 	hovering = false;
 
 	ngOnInit(): void {
-		const sub = this.dexService.getPokemonForId(this.pokemon().url.split('/')[6]).subscribe();
+		if (this.pokemonDetail()) {
+			return;
+		}
+
+		const sub = this.dexService.getPokemonForId(this.pokemonId()).subscribe();
 
 		this.destroyRef.onDestroy(() => {
 			sub.unsubscribe();
