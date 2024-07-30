@@ -7,7 +7,6 @@ export const routes: Routes = [
 		path: '',
 		component: HomeComponent,
 		pathMatch: 'full',
-		loadChildren: () => import('./gen/gen.routes').then((mod) => mod.routes)
 	},
 	{
 		path: 'dex/gen/:genNumber',
