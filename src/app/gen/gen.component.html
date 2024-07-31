@@ -2,8 +2,8 @@
 	@if (loading()) {
 		<p>Loading dex for gen {{ genNumber() }}...</p>
 	} @else {
-		<section>
-			<dex-filter (filterChange)="onPokemonFilterChange($event)" />
+		<dex-filter (filterChange)="onPokemonFilterChange($event)" />
+		<div class="list-and-detail">
 			@if (pokemons().length > 0) {
 				<ul class="dex-list">
 					@for (pokemon of pokemons(); track pokemon.name) {
@@ -25,7 +25,7 @@
 					}}".
 				</p>
 			}
-		</section>
+			<router-outlet></router-outlet>
+		</div>
 	}
-	<router-outlet></router-outlet>
 </main>
