@@ -11,8 +11,7 @@
 
 html,
 body {
-	height: 100vh;
-	overflow-y: scroll;
+	height: 100%;
 }
 
 html {
@@ -27,6 +26,8 @@ body {
 	background-image: url('../public/home-background.avif');
 	background-size: cover;
 	background-repeat: no-repeat;
+
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
 
 	&.gen-1 {
 		@include gen1-2;
@@ -76,6 +77,3 @@ ul {
 .invisible {
 	visibility: hidden;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
