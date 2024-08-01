@@ -4,9 +4,9 @@ import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/c
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
 import {NameAndUrl} from '@app/dex/dex.model';
-import {DexService} from '@app/dex/dex.service';
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
+import {DexService} from '@services/dex/dex.service';
 
 @Component({
 	selector: 'dex-entry',

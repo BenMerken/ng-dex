@@ -11,9 +11,9 @@ import {
 } from '@angular/core';
 import {ActivatedRoute, ChildrenOutletContexts, ResolveFn, RouterOutlet} from '@angular/router';
 
-import {DexService} from '@app/dex/dex.service';
 import {EntryComponent} from '@app/dex/entry/entry.component';
 import {FilterComponent, PokemonFilterValues} from '@app/dex/filter/filter.component';
+import {DexService} from '@services/dex/dex.service';
 
 @Component({
 	selector: 'dex-gen',

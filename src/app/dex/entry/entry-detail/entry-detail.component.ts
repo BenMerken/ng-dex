@@ -2,9 +2,9 @@ import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
-import {DexService} from '@app/dex/dex.service';
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
+import {DexService} from '@services/dex/dex.service';
 
 @Component({
 	selector: 'dex-entry-detail',
