@@ -1,7 +1,7 @@
 import {inject} from '@angular/core';
 import {ResolveFn, Routes} from '@angular/router';
-import {DexService} from '@app/dex/dex.service';
 
+import {DexService} from '@services/dex/dex.service';
 import titleCase from '@utils/title-case';
 
 const resolvePageTitle: ResolveFn<string> = (activatedRoute) => {

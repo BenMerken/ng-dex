@@ -2,8 +2,8 @@ import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, OnInit, output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
-import {DexService} from '@app/dex/dex.service';
 import {TypesDirective} from '@app/dex/types.directive';
+import {DexService} from '@services/dex/dex.service';
 
 export type PokemonFilterValues = {
 	name: string;

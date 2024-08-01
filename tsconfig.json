@@ -21,6 +21,7 @@
 		"lib": ["ES2022", "dom"],
 		"paths": {
 			"@app/*": ["./src/app/*"],
+			"@services/*": ["./src/services/*"],
 			"@styles/*": ["./src/styles/*"],
 			"@utils/*": ["./src/utils/*"]
 		}
