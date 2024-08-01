@@ -5,40 +5,5 @@
 
 	padding: 1rem;
 
-	background-color: rgba($color: #ffffff, $alpha: 0.9);
-
 	z-index: 1;
-}
-
-label {
-	display: block;
-}
-
-.types {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-
-	padding: 0.5rem;
-
-	label {
-		padding: 0.3rem 0.6rem;
-
-		border-radius: 16px;
-
-		&:has(input[type='checkbox']) {
-			&:hover {
-				cursor: pointer;
-			}
-		}
-
-		&:has(input[type='checkbox']:checked) {
-			border: 2px solid #000000;
-		}
-
-		input[type='checkbox'] {
-			position: absolute;
-			visibility: hidden;
-		}
-	}
 }

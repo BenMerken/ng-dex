@@ -1,22 +1,44 @@
-<form [formGroup]="form">
+<dex-card>
 	<small [class.invisible]="!form.controls.types.dirty">
 		Please note, since PokeAPI only resturns a Pokémon's type on a details request, filtering on
 		types only returns Pokémon whose details have been loaded.
 	</small>
-	<label
-		>Filter by name:
-		<input type="text" formControlName="name" placeholder="Enter name..." />
-	</label>
-	<fieldset class="types" formArrayName="types">
-		<legend>Filter on types</legend>
-		<!-- Deferred, because rendering the type inputs on the server with SSR causes error messages -->
-		@defer {
-			@for (type of typesList(); track type.name; let i = $index) {
-				<label class="solid" [pokeTypes]="[{type}]">
-					<input type="checkbox" [formControlName]="i" />
-					{{ type.name | uppercase }}
-				</label>
+	<form [formGroup]="form">
+		<mat-form-field>
+			<mat-label>Filter by name: </mat-label>
+			<input matInput type="text" formControlName="name" placeholder="Enter name..." />
+			@if (form.value.name) {
+				<button
+					matSuffix
+					mat-icon-button
+					aria-label="Clear"
+					(click)="form.controls.name.reset()"
+				>
+					<mat-icon>close</mat-icon>
+				</button>
 			}
-		}
-	</fieldset>
-</form>
+		</mat-form-field>
+		<fieldset>
+			<legend>Filter on types</legend>
+			<!-- Deferred, because rendering the type inputs on the server with SSR causes error messages -->
+			@defer {
+				<mat-chip-listbox
+					#chipList
+					aria-label="Type selection"
+					multiple
+				>
+					@for (type of typesList(); track type.name; let i = $index) {
+						<mat-chip-option
+							[selected]="form.value.types?.[i]"
+							[value]="form.value.types?.[i]"
+							[matTooltip]="getChipTooltip(type.name, !!form.value.types?.[i])"
+              (selectionChange)="onClickChip(i)"
+						>
+							{{ type.name | uppercase }}
+						</mat-chip-option>
+					}
+				</mat-chip-listbox>
+			}
+		</fieldset>
+	</form>
+</dex-card>

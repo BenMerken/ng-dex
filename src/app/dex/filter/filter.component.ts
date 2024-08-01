@@ -1,8 +1,13 @@
 import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, OnInit, output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import {TypesDirective} from '@app/dex/types.directive';
+import {CardComponent} from '@app/shared/card/card.component';
 import {DexService} from '@services/dex/dex.service';
 
 export type PokemonFilterValues = {
@@ -13,7 +18,16 @@ export type PokemonFilterValues = {
 @Component({
 	selector: 'dex-filter',
 	standalone: true,
-	imports: [ReactiveFormsModule, TypesDirective, UpperCasePipe],
+	imports: [
+		ReactiveFormsModule,
+		TypesDirective,
+		UpperCasePipe,
+		MatChipsModule,
+		MatInputModule,
+		MatIconModule,
+		MatTooltipModule,
+		CardComponent
+	],
 	templateUrl: './filter.component.html',
 	styleUrl: './filter.component.scss'
 })
@@ -57,5 +71,13 @@ export class FilterComponent implements OnInit {
 		this.destroyRef.onDestroy(() => {
 			formChangeSub.unsubscribe();
 		});
+	}
+
+  onClickChip(chipIndex: number) {
+    this.form.controls.types.at(chipIndex).setValue(!this.form.value.types?.[chipIndex])
+  }
+
+	getChipTooltip(type: string, selected: boolean): string {
+		return `Click to ${selected ? 'stop filtering' : 'filter'} on ${type} Pokémon`;
 	}
 }
