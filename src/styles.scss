@@ -5,6 +5,10 @@
 @use '@styles/utils.scss' as *;
 @use '@styles/m3-theme.scss' as theme;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @include mat.core();
 @include mat.strong-focus-indicators(
 	(
