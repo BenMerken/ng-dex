@@ -3,16 +3,19 @@
 	(mouseleave)="toggleHovering(false)"
 	[@hoverUnhover]="hovering ? 'hover' : 'unhover'"
 	routerLinkActive="solid active"
-	class="entry"
+	class="px-8 py-4 rounded-lg"
 	[pokeTypes]="pokemonDetail()?.types"
 >
 	@if (pokemonDetail()) {
-		<a [routerLink]="detailLink()">
+		<a
+			class="flex flex-col justify-center items-center gap-2 text-black no-underline"
+			[routerLink]="detailLink()"
+		>
 			<img [src]="pokemonDetail()!.sprites.front_default" alt="" width="103" height="103" />
 			<small>{{ pokemonDetail()!.name | pokemonName | uppercase }}</small>
 		</a>
 	} @else {
-		<div class="image-placeholder"></div>
+		<div class="w-[103px] h-[103px] bg-white"></div>
 		<small>{{ pokemon().name | pokemonName | uppercase }}</small>
 	}
 </li>

@@ -1,24 +1,31 @@
-<div class="container">
+<div class="relative">
 	<a
-		class="close-button"
+		class="close-button top-[-1.5rem] right-[-2rem]"
 		mat-fab
 		matTooltip="Close detail"
 		matTooltipShowDelay="1000"
 		routerLink="../.."
 		><mat-icon>cancel</mat-icon></a
 	>
-	<article class="entry-detail solid" [pokeTypes]="pokemon()?.types">
+	<article
+		class="flex flex-col justify-center items-center gap-8 p-8 max-w-max rounded-lg solid [&>*]:border [&>*]:border-solid [&>*]:border-black [&>*]:rounded-lg"
+		[pokeTypes]="pokemon()?.types"
+	>
 		@if (pokemon()) {
 			<img
+				class="bg-white"
 				[src]="pokemon()?.sprites?.front_default"
 				[alt]="pokemon()?.name"
 				width="255"
 				height="255"
 			/>
-			<h2>{{ pokemon()!.name | pokemonName | uppercase }}</h2>
-			<ul class="types-list data-container">
+			<h2 class="px-4 py-2">{{ pokemon()!.name | pokemonName | uppercase }}</h2>
+			<ul class="flex p-2 data-container">
 				@for (type of pokemon()?.types; track type.type.name) {
-					<li class="solid" [pokeTypes]="[type]">
+					<li
+						class="p-1 min-w-16 text-center border-none rounded-none solid"
+						[pokeTypes]="[type]"
+					>
 						{{ type.type.name }}
 					</li>
 				}

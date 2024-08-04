@@ -22,7 +22,10 @@ import {DexService} from '@services/dex/dex.service';
 		RouterLink
 	],
 	templateUrl: './entry-detail.component.html',
-	styleUrl: './entry-detail.component.scss'
+	styleUrl: './entry-detail.component.scss',
+	host: {
+		class: 'entry-detail'
+	}
 })
 export class EntryDetailComponent implements OnInit {
 	private activatedRoute = inject(ActivatedRoute);

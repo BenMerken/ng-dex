@@ -1,37 +1,15 @@
 @use '@styles/utils.scss' as *;
 
-.entry {
-	padding: 1rem 2rem;
-
-	border-radius: 8px;
-
-	a {
+a {
+	* {
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 0.4rem;
 
-		color: #000000;
-		text-decoration: none;
+		padding: 0.2rem;
+		width: 100%;
 
-		* {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			padding: 0.2rem;
-			width: 100%;
-
-			background-color: #ffffff;
-			border-radius: 4px;
-		}
+		background-color: #ffffff;
+		border-radius: 4px;
 	}
-}
-
-.image-placeholder {
-	width: 103px;
-	height: 103px;
-
-	background-color: #ffffff;
 }

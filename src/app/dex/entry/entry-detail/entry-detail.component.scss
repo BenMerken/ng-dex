@@ -1,5 +1,3 @@
-@use '@styles/utils.scss' as *;
-
 :host {
 	position: sticky;
 	top: 0;
@@ -10,14 +8,8 @@
 	max-height: calc(100vh - 6rem);
 }
 
-.container {
-	position: relative;
-}
-
 .close-button {
-	position: absolute;
-	top: -1.5rem;
-	right: -2rem;
+	position: absolute; // Example of a style rule Angular Material has higher specificity for than Tailwind
 }
 
 .entry-detail {
