@@ -5,6 +5,6 @@ import {MatCardModule} from '@angular/material/card';
 	selector: 'dex-card',
 	standalone: true,
 	imports: [MatCardModule],
-	templateUrl: './card.component.html',
+	templateUrl: './card.component.html'
 })
 export class CardComponent {}
