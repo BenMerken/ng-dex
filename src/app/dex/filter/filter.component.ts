@@ -73,9 +73,9 @@ export class FilterComponent implements OnInit {
 		});
 	}
 
-  onClickChip(chipIndex: number) {
-    this.form.controls.types.at(chipIndex).setValue(!this.form.value.types?.[chipIndex])
-  }
+	onClickChip(chipIndex: number) {
+		this.form.controls.types.at(chipIndex).setValue(!this.form.value.types?.[chipIndex]);
+	}
 
 	getChipTooltip(type: string, selected: boolean): string {
 		return `Click to ${selected ? 'stop filtering' : 'filter'} on ${type} Pokémon`;

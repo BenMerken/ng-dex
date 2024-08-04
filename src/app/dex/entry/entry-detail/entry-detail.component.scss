@@ -4,11 +4,20 @@
 	position: sticky;
 	top: 0;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: grid;
+	place-items: center;
 
 	max-height: calc(100vh - 6rem);
+}
+
+.container {
+	position: relative;
+}
+
+.close-button {
+	position: absolute;
+	top: -1.5rem;
+	right: -2rem;
 }
 
 .entry-detail {

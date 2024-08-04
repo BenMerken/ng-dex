@@ -1,6 +1,9 @@
 import {UpperCasePipe} from '@angular/common';
 import {Component, computed, DestroyRef, inject, input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 
 import {PokemonNamePipe} from '@app/dex/entry/pokemon-name.pipe';
 import {TypesDirective} from '@app/dex/types.directive';
@@ -9,7 +12,15 @@ import {DexService} from '@services/dex/dex.service';
 @Component({
 	selector: 'dex-entry-detail',
 	standalone: true,
-	imports: [TypesDirective, UpperCasePipe, PokemonNamePipe],
+	imports: [
+		TypesDirective,
+		UpperCasePipe,
+		PokemonNamePipe,
+		MatButtonModule,
+		MatIconModule,
+		MatTooltipModule,
+		RouterLink
+	],
 	templateUrl: './entry-detail.component.html',
 	styleUrl: './entry-detail.component.scss'
 })

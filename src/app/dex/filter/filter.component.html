@@ -22,17 +22,13 @@
 			<legend>Filter on types</legend>
 			<!-- Deferred, because rendering the type inputs on the server with SSR causes error messages -->
 			@defer {
-				<mat-chip-listbox
-					#chipList
-					aria-label="Type selection"
-					multiple
-				>
+				<mat-chip-listbox #chipList aria-label="Type selection" multiple>
 					@for (type of typesList(); track type.name; let i = $index) {
 						<mat-chip-option
 							[selected]="form.value.types?.[i]"
 							[value]="form.value.types?.[i]"
 							[matTooltip]="getChipTooltip(type.name, !!form.value.types?.[i])"
-              (selectionChange)="onClickChip(i)"
+							(selectionChange)="onClickChip(i)"
 						>
 							{{ type.name | uppercase }}
 						</mat-chip-option>
