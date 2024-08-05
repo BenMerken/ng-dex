@@ -1,11 +1,5 @@
 :host {
-	position: sticky;
-	top: 0;
-
-	display: grid;
-	place-items: center;
-
-	max-height: calc(100vh - 6rem);
+	@apply sticky top-0 grid place-items-center max-h-[calc(100vh-6rem)];
 }
 
 .close-button {
