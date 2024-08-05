@@ -1,17 +1,7 @@
 $activeRouteBackgroundColor: #0088ff;
 
 :host {
-	display: block;
-	position: sticky;
-	top: 0;
-
-	padding: 1rem;
-	height: 6rem;
-
-	background-color: rgba($color: #ffffff, $alpha: 0.5);
-	backdrop-filter: blur(10px);
-
-	z-index: 1;
+	@apply block sticky top-0 p-4 h-24 bg-white bg-opacity-50 backdrop-blur-[10px] z-10;
 }
 
 .nav-links {
